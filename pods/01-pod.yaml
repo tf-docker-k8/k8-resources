@@ -6,7 +6,7 @@ metadata:
   namespace: roboshop
 spec:
   containers:
-  - image: nginx
+  - image: techworldwithsiva/web:v1
     name: nginx
     ports:
     - containerPort: 80
