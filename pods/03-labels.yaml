@@ -8,6 +8,8 @@ metadata:
     environment: DEV
     course: kubernetes
     duration: 6weeks
+  annotations:
+    com.joindevops.maintainer: sivakumar
 spec:
   containers:
   - name: label
