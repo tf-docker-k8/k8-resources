@@ -1,0 +1,10 @@
+# docker run -p 80:80 nginx --> pull image from dockerhub and create container
+kind: Pod
+apiVersion: v1
+metadata:
+  name: stress
+spec:
+  containers:
+  - image: techworldwithsiva/stress:v1
+    name: stress
+    command: ["sleep", "2000"]
