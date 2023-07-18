@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx
+spec:
+  containers:
+  - image: techworldwithsiva/hello:v1
+    name: nginx
+    ports:
+    - containerPort: 80
