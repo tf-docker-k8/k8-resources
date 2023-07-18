@@ -8,3 +8,14 @@ spec:
   - image: techworldwithsiva/stress:v1
     name: stress
     command: ["sleep", "2000"]
+    resources:
+      # soft limit, when a container is created it will get these resources
+      requests:
+        # number of cores
+        cpu: "0.2"
+        #ram
+        memory: "128Mi"
+      # hard level,if your containers cross the requests, limits are the maximum resources
+      limits:
+        cpu: "0.3"
+        memory: "156Mi"
