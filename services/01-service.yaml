@@ -17,3 +17,13 @@ spec:
     port: 80
     # pod port
     targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-pod
+spec:
+  containers:
+  - name: debug-pod
+    image: "almalinux:8"
+    command: ["sleep", "20000"]
