@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: env-pod
+spec:
+  containers:
+  - image: nginx
+    name: env-pod
+    env:
+    - name: COURSE
+      value: TERRAFORM
+    - name: DURATION
+      value: 6WEEKS
+    - name: TRAINER
+      value: SIVAKUMAR
