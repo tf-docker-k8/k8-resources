@@ -16,9 +16,12 @@ spec:
   containers:
   - image: nginx
     name: env-pod
-    env:
-    - name: CART_HOST
-      valueFrom:
-        configMapKeyRef:
-          name: config-test
-          key: CART_HOST
+    envFrom:
+    - configMapRef:
+        name: config-test
+    # env:
+    # - name: CART_HOST
+    #   valueFrom:
+    #     configMapKeyRef:
+    #       name: config-test
+    #       key: CART_HOST
