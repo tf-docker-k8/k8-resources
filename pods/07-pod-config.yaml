@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: config-test
 data:
-  CART_HOST: cart
+  CART_HOST: cart1
   USER_HOST: user
   MYSQL_HOST: mysql.joindevops.com
   MYSQL_SCHEMA: cities
