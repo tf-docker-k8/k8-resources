@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: default
+  labels:
+    name: nginx-service
+    environment: DEV
+spec:
+  type: LoadBalancer
+  selector:
+  # you should provide pod labels here
+    project: eksctl
+    environment: dev
+    component: nginx
+  ports:
+  - name: http-port
+    protocol: TCP
+    # service port
+    port: 80
+    # pod port
+    targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    project: eksctl
+    environment: dev
+    component: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
