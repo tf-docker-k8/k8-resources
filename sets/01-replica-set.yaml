@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+# these labels replica set resource labels
+metadata:
+  name: nginx-replicaset
+  labels:
+    environment: dev
+    project: eksctl
+    component: nginx
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+  # these labels are used to select which pod to increase replicas
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+    # these lables are pod labels
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
