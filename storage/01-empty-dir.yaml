@@ -52,9 +52,9 @@ spec:
               mountPath: /var/log/nginx/
             - name: filebeat-config
               mountPath: /usr/share/filebeat/filebeat.yml
-              subPath: filebeat.yml 
+              subPath: filebeat.yml
       volumes:
-        # we should to both containers
+        # we should mount to both containers
         - name: nginx-logs
           emptyDir: {}
         - name: filebeat-config
