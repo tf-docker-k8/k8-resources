@@ -22,7 +22,7 @@ spec:
   resources:
     requests:
       storage: 50Gi
-  storageClassName: "ebs-dynamic-sc"
+  storageClassName: "efs-dynamic-sc"
 ---
 kind: Pod
 apiVersion: v1
