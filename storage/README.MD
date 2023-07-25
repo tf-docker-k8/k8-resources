@@ -47,10 +47,15 @@ StorageClass may specify the provisioner as "kubernetes.io/aws-ebs" for dynamica
 
 Kubernetes foundation created CSI (Container Storage Interface). Earlier we were able to interact with EBS directly. But it is deprecated now, we should install CSI drivers.
 
+EBS CSI
 ```
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.21"
 ```
-
+EFS CSI
+```
+kubectl kustomize \
+    "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.5" > public-ecr-driver.yaml
+```
 **Static Provisioning**
 1. User should create storage manually. Make sure EC2 instance Role has EC2 Full access or not.
 2. Create PV, storage class option should be empty. This is admin activity
