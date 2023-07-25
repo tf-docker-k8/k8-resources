@@ -53,7 +53,7 @@ spec:
     - containerPort: 80
     volumeMounts:
     - mountPath: "/usr/share/nginx/html"
-        name: html
+      name: html
   volumes:
     - name: html
       persistentVolumeClaim:
