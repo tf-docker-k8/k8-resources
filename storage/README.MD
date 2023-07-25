@@ -52,11 +52,10 @@ kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernete
 ```
 
 **Static Provisioning**
-1. User should create storage manually.
-2. Create PV, storage class option should be empty
+1. User should create storage manually. Make sure EC2 instance Role has EC2 Full access or not.
+2. Create PV, storage class option should be empty. This is admin activity
 3. Create PVC that can claim PV, storage class option should be empty
 4. Use PVC in pod definition.
-5. Make sure EC2 instance Role has EBS access or not.
 
 **Dynamic Provisioning**
 1. We should have SC created for the storage type. This is admin activity.
