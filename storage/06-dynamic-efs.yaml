@@ -1,0 +1,64 @@
+# here you have to create EFS file system, but access points will be create dynamically
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs-dynamic-sc
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-00e014c5cd0e3f195
+  directoryPerms: "700"
+  gidRangeStart: "1000" # optional
+  gidRangeEnd: "2000" # optional
+  basePath: "/roboshop" # optional
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-dynamic-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: "ebs-dynamic-sc"
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx
+  labels:
+    purpose: ebs-static
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: "/usr/share/nginx/html"
+      name: html
+  volumes:
+    - name: html
+      persistentVolumeClaim:
+        claimName: efs-dynamic-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+  # you should provide pod labels here
+    purpose: ebs-static
+  ports:
+  - name: http-port
+    protocol: TCP
+    # service port
+    port: 80
+    # pod port
+    targetPort: 80
