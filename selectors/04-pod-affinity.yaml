@@ -36,27 +36,27 @@ spec:
     name: nginx
     ports:
     - containerPort: 80
----
-kind: Pod
-apiVersion: v1
-metadata:
-  name: user
-  namespace: roboshop
-  labels:
-    name: user
-spec:
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: name
-            operator: In
-            values:
-            - cart
-        topologyKey: topology.kubernetes.io/zone
-  containers:
-  - image: nginx
-    name: nginx
-    ports:
-    - containerPort: 80
+# ---
+# kind: Pod
+# apiVersion: v1
+# metadata:
+#   name: user
+#   namespace: roboshop
+#   labels:
+#     name: user
+# spec:
+#   affinity:
+#     podAntiAffinity:
+#       requiredDuringSchedulingIgnoredDuringExecution:
+#       - labelSelector:
+#           matchExpressions:
+#           - key: name
+#             operator: In
+#             values:
+#             - cart
+#         topologyKey: topology.kubernetes.io/zone
+#   containers:
+#   - image: nginx
+#     name: nginx
+#     ports:
+#     - containerPort: 80
