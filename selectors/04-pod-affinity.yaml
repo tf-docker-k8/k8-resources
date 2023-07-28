@@ -30,6 +30,7 @@ spec:
             operator: In
             values:
             - catalogue
+        topologyKey: topology.kubernetes.io/zone
   containers:
   - image: nginx
     name: nginx
