@@ -40,6 +40,7 @@ spec:
   # you should provide pod labels here
     app: nginx
   ports:
+    type: LoadBalancer
   - name: http-port
     protocol: TCP
     # service port
