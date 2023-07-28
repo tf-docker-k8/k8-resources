@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-hpa
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-perl
+        resources:
+          requests:
+            cpu: "100m" #1000m is 1 core
+            memory: "128Mi"
+          limits:
+            cpu: "150m"
+            memory: "156Mi"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-hpa
+  namespace: default
+  labels:
+    name: nginx-service
+    environment: DEV
+spec:
+  selector:
+  # you should provide pod labels here
+    app: nginx
+  ports:
+  - name: http-port
+    protocol: TCP
+    # service port
+    port: 80
+    # pod port
+    targetPort: 80
