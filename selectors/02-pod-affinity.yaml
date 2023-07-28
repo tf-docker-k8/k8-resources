@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-node-affinity-preferred
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: tier
+            operator: In
+            values:
+            - DB
+      - weight: 50
+        preference:
+          matchExpressions:
+          - key: tier
+            operator: In
+            values:
+            - APP
+  containers:
+  - name: nginx-node-affinity-preferred
+    image: nginx
